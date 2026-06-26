@@ -1,24 +1,37 @@
-#搭建 VitePress + GitHub Pages
+# 搭建 VitePress + GitHub Pages
 
-1.创建GitHub仓库
-新建仓库：
-仓库名： yourname.github.io
-这里的yourname在主页Overview可以看到
-仓库必须是Public库；
+记录从零搭建这个博客的完整步骤。
 
-2.本地初始化项目：
+## 一、创建 GitHub 仓库
+
+1. 新建仓库，仓库名必须是 `yourname.github.io`
+   - 这里的 `yourname` 在你的 GitHub 主页 Overview 可以看到
+2. 仓库必须是 **Public**（公开）
+
+## 二、本地初始化项目
+
+```bash
 mkdir my-blog
 cd my-blog
 npm init -y
+```
 
-3.安装VitePress
+## 三、安装 VitePress
+
+```bash
 npm install vitepress -D
+```
 
-4.初始化目录结构：
+## 四、初始化目录结构
+
+```bash
 mkdir docs
 touch docs/index.md
-写入：
-==================================================
+```
+
+在 `docs/index.md` 写入：
+
+```markdown
 # 我的开发记录系统
 
 欢迎来到我的技术演化日志。
@@ -26,58 +39,57 @@ touch docs/index.md
 - Dev Logs：记录真实开发过程
 - Concepts：记录概念理解演化
 - Notes：临时想法
-===================================================
+```
 
-5.配置VitePress
-创建：
-docs/.vitepress/config.js
+## 五、配置 VitePress
 
-内容：
+创建 `docs/.vitepress/config.js`，内容：
+
+```js
 export default {
-title: "Ethon Dev Log",
-description: "开发过程与概念理解记录",
-themeConfig: {
-nav: [
-{ text: "Dev Logs", link: "/dev/" },
-{ text: "Concepts", link: "/concepts/" }
-]
+  title: "Ethon Dev Log",
+  description: "开发过程与概念理解记录",
+  themeConfig: {
+    nav: [
+      { text: "Dev Logs", link: "/dev/" },
+      { text: "Concepts", link: "/concepts/" }
+    ]
+  }
 }
-}
+```
 
-6.补充示例目录
+## 六、补充示例目录
+
+```bash
 mkdir docs/dev
 mkdir docs/concepts
-
 touch docs/dev/index.md
-填充内容：
+```
+
+在 `docs/dev/index.md` 填充内容：
+
+```markdown
 # Dev Logs
 
 记录真实开发过程（debug / bug / 思考）
 
-- Flowable问题排查
-- MyBatis坑记录
+- Flowable 问题排查
+- MyBatis 坑记录
+```
 
-7.本地预览
+## 七、本地预览
+
+```bash
 npx vitepress dev docs
-浏览器打开：
-http://localhost:5173
+```
 
-二、部署到GitHub Pages
-8.安装deploy工具
-npm install gh-pages -D
+浏览器打开：`http://localhost:5173`
 
-9.在package.json加脚本
-"scripts": {
-"docs:build": "vitepress build docs",
-"docs:deploy": "npm run docs:build && gh-pages -d docs/.vitepress/dist"
-}
+## 八、部署到 GitHub Pages
 
-10.部署
-npm run docs:deploy
+本博客使用 **GitHub Actions** 自动部署：推送到 `master` 分支后，云端自动构建并发布。
 
-11.GitHub设置Pages
-进入仓库：
-Setting --> Pages
-选择：
-Branch： gh-pages
-保存
+- 工作流文件：`.github/workflows/deploy.yml`
+- GitHub 仓库 **Settings → Pages → Source** 设为 **GitHub Actions**
+
+> 提示：以前用 `gh-pages` 包手动部署（`npm run docs:deploy`），改用 Actions 后已不再需要。
