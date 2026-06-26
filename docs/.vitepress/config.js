@@ -4,7 +4,9 @@ export default {
     themeConfig: {
         nav: [
             { text: "Dev Logs", link: "/dev/" },
-            { text: "Concepts", link: "/concepts/" }
+            { text: "Concepts", link: "/concepts/" },
+            { text: "My Note", link: "/note/" },
+            { text: "Architecture", link: "/architecture/" },
         ]
     }
 }
