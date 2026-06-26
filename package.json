@@ -5,15 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "docs:build": "vitepress build docs",
-    "docs:deploy": "npm run docs:build && gh-pages -d docs/.vitepress/dist"
+    "docs:build": "vitepress build docs"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
   "devDependencies": {
-    "gh-pages": "^6.3.0",
     "vitepress": "^1.6.4"
   }
 }
